@@ -1,10 +1,9 @@
 package fr.uga.l3miage.pc.api.endpoints;
 
+import fr.uga.l3miage.pc.api.requests.GameCreationRequest;
+import fr.uga.l3miage.pc.api.requests.JoinGameRequest;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.Operation;
 
@@ -16,14 +15,19 @@ public interface GameEndpoints {
     @Operation(description = "Create a game")
     @ApiResponse(responseCode = "200", description = "Game created")
     @ResponseStatus(HttpStatus.OK)
-    int createGame(int turnAmount);
+    long createGame(@RequestBody GameCreationRequest gameCreationRequest);
 
 
     @Operation(description = "Join a game than has already been created")
     @ApiResponse(responseCode = "200", description = "Game joined")
     @ResponseStatus(HttpStatus.OK)
-    void joinGame(int gameId);
+    void joinGame(@RequestBody JoinGameRequest joinGameRequest);
 
+
+    @Operation(description = "Join a game than has already been created")
+    @ApiResponse(responseCode = "200", description = "Game joined")
+    @ResponseStatus(HttpStatus.OK)
+    void playTurn(@RequestBody JoinGameRequest joinGameRequest);
 
 
 }
