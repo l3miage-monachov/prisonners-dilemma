@@ -1,30 +1,29 @@
 package fr.uga.l3miage.pc.prisonersdilemma.models;
-
-
+import fr.uga.l3miage.pc.prisonersdilemma.enums.Action;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import javax.persistence.*;
-import java.util.List;
-
 @Entity
 @Getter
 @SuperBuilder
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class GameEntity {
-
+public class TurnEntity {
     @Id
-    private int gameID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int turnNumber;
 
-    private int totalScore;
+    private int scorePlayerOne;
 
-    @OneToMany
-    @JoinColumn(name = "gamePlayer", referencedColumnName = "username")
-    private List<PlayerEntity> players;
+    private int scorePlayerTwo;
 
-    //cascade = CascadeType.ALL, orphanRemoval = true
+    @ManyToOne
+    private GameEntity game;
 }
+
+
+

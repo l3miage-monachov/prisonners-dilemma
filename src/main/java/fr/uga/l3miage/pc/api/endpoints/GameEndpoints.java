@@ -2,6 +2,7 @@ package fr.uga.l3miage.pc.api.endpoints;
 
 import fr.uga.l3miage.pc.api.requests.GameCreationRequest;
 import fr.uga.l3miage.pc.api.requests.JoinGameRequest;
+import fr.uga.l3miage.pc.api.requests.PlayTurnRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -24,10 +25,10 @@ public interface GameEndpoints {
     void joinGame(@RequestBody JoinGameRequest joinGameRequest);
 
 
-    @Operation(description = "Join a game than has already been created")
+    @Operation(description = "play your turn")
     @ApiResponse(responseCode = "200", description = "Game joined")
     @ResponseStatus(HttpStatus.OK)
-    void playTurn(@RequestBody JoinGameRequest joinGameRequest);
+    void playTurn(@RequestBody PlayTurnRequest playTurnRequest);
 
 
 }
